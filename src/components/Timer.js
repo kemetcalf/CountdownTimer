@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Stack from "react-bootstrap/Stack";
 
 const msPerDay = 24 * 60 * 60 * 1000;
 const msPerHour = 60 * 60 * 1000;
@@ -17,7 +18,7 @@ const dhmsRemaining = (msRemaining) => {
   return d + "d:" + h + "h:" + m + "m:" + s + "s";
 };
 
-function Timer() {
+function Timer(props) {
   //hooks to update msDateNow state every second
   const [msDateNow, setMsDateNow] = useState(Date.now());
   useEffect(() => {
@@ -27,27 +28,32 @@ function Timer() {
     return () => clearInterval(interval);
   }, []);
 
-  const endDate = new Date(2022, 11, 31, 23, 59, 59, 0);
-  const msEndDate = endDate.getTime();
+  const dateFromForm = props.enddate;
+  const msEndDate = new Date(dateFromForm);
+  // console.log("poop");
+  // console.log(dateFromForm); //making sure the info passes
   const msRemaining = msEndDate - msDateNow;
+
+  // console.log(msEndDate);
+  // console.log(msRemaining);
 
   const currentDate = new Date(); //for display purposes only
 
-  console.log(endDate);
-  console.log(msEndDate);
-  console.log(msRemaining);
-
   return (
-    <div>
-      <h1>Current Date:</h1>
+    <Stack>
+      <h3>Today is</h3>
       <p>
         {currentDate.toLocaleString("en-US", {
           hour12: true,
           timeZoneName: "short",
         })}
       </p>
+      <h3>It is currently</h3>
       <p>{dhmsRemaining(msRemaining)}</p>
-    </div>
+      <h3>until 'event'</h3>
+      {/*TODO: pass event name to variable in text above; Also, clear the fields
+      after input */}
+    </Stack>
   );
 }
 
