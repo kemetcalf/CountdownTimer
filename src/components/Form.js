@@ -16,9 +16,7 @@ const MyForm = (props) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
-        <Form.Label column sm={2}>
-          Event
-        </Form.Label>
+        <Form.Label column sm={1}></Form.Label>
         <Col sm={10}>
           <Form.Control
             type="string"
@@ -30,9 +28,7 @@ const MyForm = (props) => {
       </Form.Group>
 
       <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
-        <Form.Label column sm={2}>
-          Date
-        </Form.Label>
+        <Form.Label column sm={1}></Form.Label>
         <Col sm={10}>
           <Form.Control
             type="datetime-local"
@@ -45,48 +41,12 @@ const MyForm = (props) => {
       </Form.Group>
 
       <Form.Group as={Row} className="mb-3">
-        <Col sm={{ span: 10, offset: 2 }}>
+        <Col sm={{ span: 10, offset: 1 }}>
           <Button type="submit">Begin Countdown</Button>
         </Col>
       </Form.Group>
     </Form>
   );
 };
-
-//   <div className="section is-fullheight">
-//     <div className="container">
-//       <div className="column is-4 is-offset-4">
-//         <div className="box">
-//           <form onSubmit={handleSubmit}>
-//             <div className="field">
-//               <label className="label">Countdown Date:</label>
-//               <div className="control">
-//                 <input
-//                   className="input"
-//                   type="datetime-local"
-//                   name="endDate"
-//                   onChange={handleChange}
-//                   required
-//                 />
-//               </div>
-//             </div>
-//             <div className="field">
-//               <label className="label">Event name: </label>
-//               <input
-//                 className="input"
-//                 type="text"
-//                 name="name"
-//                 onChange={handleChange}
-//                 required
-//               />
-//             </div>
-//             <Button as="input" type="submit" value="Begin Countdown" />
-//             {""}
-//           </form>
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-// );
 
 export default MyForm;
