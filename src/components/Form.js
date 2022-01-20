@@ -1,52 +1,67 @@
 import React from "react";
-import useForm from "./useForm";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-const MyForm = (props) => {
-  const { values, handleChange, handleSubmit } = useForm(countDown);
+class AddTimer extends React.Component {
+  state = {
+    event: "",
+    date: "",
+  };
 
-  function countDown() {
-    props.dateInput(values.endDate);
-    console.log(values.endDate);
+  add = (e) => {
+    e.preventDefault();
+    if (this.state.event === "" || this.state.date === "") {
+      alert("Please fill out all fields!");
+      return;
+    }
+
+    this.props.addTimerHandler(this.state);
+    this.setState({ event: "", date: "" });
+  };
+
+  render() {
+    return (
+      <Form onSubmit={this.add}>
+        <Form.Group
+          as={Row}
+          className="mb-3"
+          controlId="formHorizontalPassword"
+        >
+          <Form.Label column sm={1}></Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="string"
+              placeholder="Event name"
+              value={this.state.event}
+              onChange={(e) => this.setState({ event: e.target.value })}
+              required
+            />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+          <Form.Label column sm={1}></Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="datetime-local"
+              name="endDate"
+              placeholder="Date"
+              value={this.state.date}
+              onChange={(e) => this.setState({ date: e.target.value })}
+              required
+            />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3">
+          <Col sm={{ span: 10, offset: 1 }}>
+            <Button type="submit">Begin Countdown</Button>
+          </Col>
+        </Form.Group>
+      </Form>
+    );
   }
-
-  return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
-        <Form.Label column sm={1}></Form.Label>
-        <Col sm={10}>
-          <Form.Control
-            type="string"
-            placeholder="Event name"
-            onChange={handleChange}
-            required
-          />
-        </Col>
-      </Form.Group>
-
-      <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
-        <Form.Label column sm={1}></Form.Label>
-        <Col sm={10}>
-          <Form.Control
-            type="datetime-local"
-            name="endDate"
-            placeholder="Date"
-            onChange={handleChange}
-            required
-          />
-        </Col>
-      </Form.Group>
-
-      <Form.Group as={Row} className="mb-3">
-        <Col sm={{ span: 10, offset: 1 }}>
-          <Button type="submit">Begin Countdown</Button>
-        </Col>
-      </Form.Group>
-    </Form>
-  );
-};
-
-export default MyForm;
+}
+export default AddTimer;

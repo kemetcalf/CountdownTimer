@@ -15,7 +15,7 @@ const dhmsRemaining = (msRemaining) => {
     (((msRemaining % msPerDay) % msPerHour) % msPerMin) / msPerSec
   );
 
-  return d + "d:" + h + "h:" + m + "m:" + s + "s";
+  return d + "d: " + h + "h: " + m + "m: " + s + "s";
 };
 
 function Timer(props) {
@@ -37,24 +37,11 @@ function Timer(props) {
   // console.log(msEndDate);
   // console.log(msRemaining);
 
-  const currentDate = new Date(); //for display purposes only
-
   return (
-    <Stack>
-      <h3>Today is</h3>
-      <p>
-        {currentDate.toLocaleString("en-US", {
-          hour12: true,
-          timeZoneName: "short",
-        })}
-      </p>
-      <h3>It is currently</h3>
-      <p>{dhmsRemaining(msRemaining)}</p>
-      <h3>until 'event'</h3>
-      {/*TODO: pass event name to variable in text above; Also, clear the fields
-      after input */}
-    </Stack>
+   
+      {dhmsRemaining(msRemaining)}
+      
   );
 }
 
-export default Timer;
+// export default Timer;

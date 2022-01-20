@@ -1,27 +1,69 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Stack } from "react-bootstrap";
 
+const msPerDay = 24 * 60 * 60 * 1000;
+const msPerHour = 60 * 60 * 1000;
+const msPerMin = 60 * 1000;
+const msPerSec = 1000;
+
+const dhmsRemaining = (msRemaining) => {
+  const d = Math.floor(msRemaining / msPerDay);
+  const h = Math.floor((msRemaining % msPerDay) / msPerHour);
+  const m = Math.floor(((msRemaining % msPerDay) % msPerHour) / msPerMin);
+  const s = Math.floor(
+    (((msRemaining % msPerDay) % msPerHour) % msPerMin) / msPerSec
+  );
+
+  return d + "d: " + h + "h: " + m + "m: " + s + "s";
+};
+
 const TimerCard = (props) => {
-  const { id, event, date, icon } = props.savedTimers;
+  // eslint-disable-next-line
+  const { id, event, date, icon } = props.savedTimer;
+
+  //hooks to update msDateNow state every second
+  const [msDateNow, setMsDateNow] = useState(Date.now());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMsDateNow(Date.now());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const dateFromForm = date;
+  const msEndDate = new Date(dateFromForm);
+  // console.log("poop");
+  // console.log(dateFromForm); //making sure the info passes
+  const msRemaining = msEndDate - msDateNow;
+
+  // console.log(msEndDate);
+  // console.log(msRemaining);
 
   return (
-    <Stack gap={4}>
-      <div id="event-input">
-        <Stack direction="horizontal" gap={3}>
-          <h3>
-            <i className="bi bi-stars" style={{ color: "#f7df0e" }}></i>
-            {/*  */}
-            {event}
-          </h3>
-          <div>Correlating Countdown Timer</div>
-        </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <div>{date}</div>
-          <i className="bi bi-trash ms-auto" style={{ color: "red" }}></i>
-        </Stack>
-      </div>
-      <div></div>
-    </Stack>
+    console.log(msRemaining),
+    console.log(dhmsRemaining(msRemaining)),
+    (
+      <Stack gap={4}>
+        <div id="event-input">
+          <Stack direction="horizontal" gap={3}>
+            <h3>
+              <i className="bi bi-stars" style={{ color: "#f7df0e" }}></i>
+              {event}
+            </h3>
+            <div>{dhmsRemaining(msRemaining)}</div>
+          </Stack>
+          <Stack direction="horizontal" gap={3}>
+            <div>{date}</div>
+            <i
+              className="bi bi-trash ms-auto"
+              style={{ color: "red" }}
+              onClick={() => props.deleteContactHandler(id)}
+            ></i>
+          </Stack>
+        </div>
+        <div></div>
+      </Stack>
+    )
   );
 };
 
