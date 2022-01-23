@@ -1,9 +1,20 @@
 // Default variable overrides
-$body-bg: rgb(250, 248, 243);
-$body-color: rgb(0, 152, 199);
-$input-placeholder-color: $body-color;
+$body-bg: white;
+$body-color: indigo;
+// $input-placeholder-color: $body-color;
 $body-text-align: center;
 $enable-shadows: true;
 
-@import "~bootstrap/scss/bootstrap.scss";
+$card-border-color: lightgrey;
+
+.heading {
+  color: whitesmoke;
+  background-color: indigo;
+}
+
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/utilities";
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");

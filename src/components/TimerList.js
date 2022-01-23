@@ -3,15 +3,20 @@ import Stack from "react-bootstrap/Stack";
 import TimerCard from "./TimerCard";
 
 const TimerList = (props) => {
-  // console.log(props);
-
   const deleteTimerHandler = (id) => {
     props.getTimerId(id);
   };
 
-  const renderTimerList = props.savedTimers.map((timerEvent) => {
+  const sortedTimers = props.savedTimers.sort(function (a, b) {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateA.getTime() - dateB.getTime();
+  });
+
+  const renderTimerList = sortedTimers.map((timerEvent) => {
     return (
       <TimerCard
+        key={timerEvent.id}
         savedTimer={timerEvent}
         clickHandler={deleteTimerHandler}
       ></TimerCard>

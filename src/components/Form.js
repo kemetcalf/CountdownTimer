@@ -57,7 +57,13 @@ class AddTimer extends React.Component {
 
         <Form.Group as={Row} className="mb-3">
           <Col sm={{ span: 10, offset: 1 }}>
-            <Button type="submit">Begin Countdown</Button>
+            <Button
+              type="submit"
+              size="lg"
+              style={{ backgroundColor: "indigo", borderColor: "indigo" }}
+            >
+              Begin Countdown
+            </Button>
           </Col>
         </Form.Group>
       </Form>

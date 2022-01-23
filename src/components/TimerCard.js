@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Stack } from "react-bootstrap";
+import { Card, Stack } from "react-bootstrap";
 
 const msPerDay = 24 * 60 * 60 * 1000;
 const msPerHour = 60 * 60 * 1000;
@@ -32,38 +32,50 @@ const TimerCard = (props) => {
 
   const dateFromForm = date;
   const msEndDate = new Date(dateFromForm);
-  // console.log("poop");
-  // console.log(dateFromForm); //making sure the info passes
   const msRemaining = msEndDate - msDateNow;
 
-  // console.log(msEndDate);
+  let clockStatus;
+  if (msRemaining > 0) {
+    clockStatus = dhmsRemaining(msRemaining);
+  } else {
+    clockStatus = (
+      <div>
+        {" "}
+        <i className="bi bi-alarm-fill" style={{ color: "green" }}></i> The Time
+        has come!
+      </div>
+    );
+  }
+
   // console.log(msRemaining);
 
   return (
-    console.log(msRemaining),
-    console.log(dhmsRemaining(msRemaining)),
-    (
-      <Stack gap={4}>
-        <div id="event-input">
-          <Stack direction="horizontal" gap={3}>
-            <h3>
-              <i className="bi bi-stars" style={{ color: "#f7df0e" }}></i>
-              {event}
-            </h3>
-            <div>{dhmsRemaining(msRemaining)}</div>
-          </Stack>
-          <Stack direction="horizontal" gap={3}>
-            <div>{date}</div>
-            <i
-              className="bi bi-trash ms-auto"
-              style={{ color: "red" }}
-              onClick={() => props.deleteContactHandler(id)}
-            ></i>
-          </Stack>
-        </div>
-        <div></div>
-      </Stack>
-    )
+    // console.log(msRemaining),
+    // console.log(dhmsRemaining(msRemaining)),
+    <Card>
+      <Card.Body>
+        <Stack gap={4}>
+          <div id="event-input">
+            <Stack direction="horizontal" gap={3}>
+              <h3>
+                <i className="bi bi-stars" style={{ color: "#f7df0e" }}></i>
+                {event}
+              </h3>
+              <h6 className="ms-auto">{clockStatus}</h6>
+            </Stack>
+            <Stack direction="horizontal" gap={3}>
+              <div>{date}</div>
+              <i
+                className="bi bi-trash ms-auto"
+                style={{ color: "red" }}
+                onClick={() => props.clickHandler(id)}
+              ></i>
+            </Stack>
+          </div>
+          <div></div>
+        </Stack>
+      </Card.Body>
+    </Card>
   );
 };
 

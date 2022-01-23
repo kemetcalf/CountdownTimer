@@ -1,12 +1,8 @@
 import React from "react";
-import Stack from "react-bootstrap/Stack";
+// import Stack from "react-bootstrap/Stack";
 
 function Header() {
-  return (
-    <Stack>
-      <h1>Countdown Timer!</h1>
-    </Stack>
-  );
+  return <h1 className="heading">Countdown Timer!</h1>;
 }
 
 export default Header;
