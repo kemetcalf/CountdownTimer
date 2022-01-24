@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Alert from "react-bootstrap/Alert";
 
 class AddTimer extends React.Component {
   state = {
@@ -13,8 +14,11 @@ class AddTimer extends React.Component {
   add = (e) => {
     e.preventDefault();
     if (this.state.event === "" || this.state.date === "") {
-      alert("Please fill out all fields!");
-      return;
+      return (
+        <Alert variant="info" dismissible="true">
+          "Please fill out all fields!"
+        </Alert>
+      );
     }
 
     this.props.addTimerHandler(this.state);
@@ -57,11 +61,7 @@ class AddTimer extends React.Component {
 
         <Form.Group as={Row} className="mb-3">
           <Col sm={{ span: 10, offset: 1 }}>
-            <Button
-              type="submit"
-              size="lg"
-              style={{ backgroundColor: "indigo", borderColor: "indigo" }}
-            >
+            <Button type="submit" size="lg" variant="primary">
               Begin Countdown
             </Button>
           </Col>

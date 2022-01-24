@@ -40,7 +40,6 @@ function App() {
 
   return (
     <Stack gap={2} className="col-md-5 mx-auto">
-      <div></div>
       <Header />
       <AddTimer addTimerHandler={addTimerHandler} />
       <TimerList savedTimers={savedTimers} getTimerId={removeTimerHandler} />

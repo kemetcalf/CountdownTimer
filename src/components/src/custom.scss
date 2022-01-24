@@ -1,20 +1,31 @@
+@import "../../../node_modules/bootstrap/scss/functions";
 // Default variable overrides
-$body-bg: white;
-$body-color: indigo;
-// $input-placeholder-color: $body-color;
+
+$primary: #6610f2;
+$secondary: indigo;
+$success: teal;
+$info: #d63384;
+$warning: yellow;
+$danger: orange;
+$light: lightgray;
+$dark: darkgray;
+
+$body-bg: whitesmoke;
+$body-color: $primary;
+$input-placeholder-color: $body-color;
 $body-text-align: center;
 $enable-shadows: true;
-
 $card-border-color: lightgrey;
 
 .heading {
-  color: whitesmoke;
-  background-color: indigo;
+  color: $body-bg;
+  background-color: $primary;
 }
 
-@import "../../../node_modules/bootstrap/scss/functions";
-@import "../../../node_modules/bootstrap/scss/variables";
-@import "../../../node_modules/bootstrap/scss/mixins";
-@import "../../../node_modules/bootstrap/scss/utilities";
+//
+//
+// @import "../../../node_modules/bootstrap/scss/mixins";
+// @import "../../../node_modules/bootstrap/scss/utilities";
+@import "../../../node_modules/bootstrap/scss/_variables";
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");

@@ -41,8 +41,8 @@ const TimerCard = (props) => {
     clockStatus = (
       <div>
         {" "}
-        <i className="bi bi-alarm-fill" style={{ color: "green" }}></i> The Time
-        has come!
+        <i className="bi bi-alarm-fill" style={{ color: "limegreen" }}></i> The
+        Time has come!
       </div>
     );
   }
