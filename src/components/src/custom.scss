@@ -22,6 +22,15 @@ $card-border-color: lightgrey;
   background-color: $primary;
 }
 
+.dropdown-menu {
+  overflow-y: scroll;
+  height: 300px;
+}
+
+button.submit {
+  margin-top: 10px;
+}
+
 //
 //
 // @import "../../../node_modules/bootstrap/scss/mixins";

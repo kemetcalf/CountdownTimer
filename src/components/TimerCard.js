@@ -19,7 +19,7 @@ const dhmsRemaining = (msRemaining) => {
 
 const TimerCard = (props) => {
   // eslint-disable-next-line
-  const { id, event, date, icon } = props.savedTimer;
+  const { id, event, date, icon, color } = props.savedTimer;
 
   //hooks to update msDateNow state every second
   const [msDateNow, setMsDateNow] = useState(Date.now());
@@ -46,8 +46,10 @@ const TimerCard = (props) => {
       </div>
     );
   }
-
   // console.log(msRemaining);
+
+  const dateObject = new Date(date);
+  const readableDate = dateObject.toDateString();
 
   return (
     // console.log(msRemaining),
@@ -58,13 +60,14 @@ const TimerCard = (props) => {
           <div id="event-input">
             <Stack direction="horizontal" gap={3}>
               <h3>
-                <i className="bi bi-stars" style={{ color: "#f7df0e" }}></i>
+                <i className={icon} color={color}></i>
+                {/* <i className="bi bi-stars" style={{ color: "#f7df0e" }}></i> */}
                 {event}
               </h3>
               <h6 className="ms-auto">{clockStatus}</h6>
             </Stack>
             <Stack direction="horizontal" gap={3}>
-              <div>{date}</div>
+              <div>{readableDate}</div>
               <i
                 className="bi bi-trash ms-auto"
                 style={{ color: "red" }}
